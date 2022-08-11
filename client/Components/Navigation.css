@@ -1,0 +1,23 @@
+.nav-bar {
+    height: auto;
+    width: 100%;
+    border: 1px solid black;
+    background-color: var(--second-color);
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin:0;
+    width: auto;
+}
+
+.nav-listpoint{
+    margin: 1rem;
+    text-decoration: none;
+    color: var(--main-color);
+    font-size: 1.3rem;
+}

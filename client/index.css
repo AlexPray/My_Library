@@ -1,0 +1,14 @@
+:root {
+    --main-color: #D5B15F;
+    --second-color: #292929;
+    --third-color: #F7EFDF;
+}
+
+body {
+  background-color: var(--third-color);
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+

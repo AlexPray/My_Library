@@ -1,0 +1,13 @@
+.add-button {
+    height: 35px;
+    width: 150px;
+    color: var(--main-color);
+    background-color: var(--second-color);
+    border: none;
+    align-self: center;
+}
+
+.add-button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}

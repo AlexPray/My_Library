@@ -1,0 +1,41 @@
+.card {
+  height: 230px;
+  width: 256px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  max-width: 280px;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  max-height: 180px;
+  min-height: 180px;
+}
+
+.text-container {
+  font-size: 0.7rem;
+  text-align: center;
+  width: 128px;
+  max-height: 180px;
+  min-height: 180px;
+  background-color: var(--main-color);
+  padding: 0 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-container:first-child {
+  font-weight: bold;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.authors {
+  margin-top: auto;
+  font-size: 0.68rem;
+}
