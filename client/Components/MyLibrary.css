@@ -1,0 +1,13 @@
+.library {
+    display: flex;
+    width: inherit;
+    height: auto;
+    flex: 100%;
+    flex-wrap: wrap;
+    justify-content:center
+}
+
+.library * {
+    flex-shrink: 1;
+    flex-grow: 1;
+}

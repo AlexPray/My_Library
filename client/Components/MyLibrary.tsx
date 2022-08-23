@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import "./MyLibrary.css";
 import Card from "./Card";
 import Book from "../API/Book";
-import { match } from "assert";
+import RemoveButton from "./RemoveButton";
+import Notification from "./Notification";
 
 const MyLibrary = () => {
   const [library, setlibrary] = useState<Book[]>([]);
+  const [notification, setnotification] = useState(false);
 
   useEffect(() => {
     fetchBooksHandler();
@@ -19,19 +21,34 @@ const MyLibrary = () => {
         return response.data;
       })
       .then((data) => {
-        setlibrary(data)
+        setlibrary(data);
       });
   };
 
+  const showNotification = () => {
+    fetchBooksHandler();
+    setnotification(true);
+  };
+
+  if (notification === true) {
+    const vanishNotification = setTimeout(() => {
+      setnotification(false);
+    }, 5000);
+  }
+
   if (library.length > 0) {
-    console.log(library);
-    
     return (
       <div>
-        <p>This is my Library</p>
-        {library.map((book: Book) => (
-          <Card key={Math.random()} book={book} />
-        ))}
+        <p>This is my beautiful working Library</p>
+        <div className="library">
+          {library.map((book: Book) => (
+            <div key={Math.random()} className="card">
+              <Card book={book} />
+              <RemoveButton handleChange={showNotification} book={book} />
+            </div>
+          ))}
+        </div>
+        {notification === true && <Notification className="notification-appear" />}
       </div>
     );
   } else {

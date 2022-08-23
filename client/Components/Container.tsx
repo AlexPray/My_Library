@@ -23,6 +23,7 @@ const Container = () => {
     <div className="container">
       <Navigation />
       <SearchBar onGettingSearchResults={saveSearchResultsHandler} />
+      <hr />
       <Routes>
         <Route path="search" element={<SearchResults searchResults={obtainedData} />}/>
         <Route path="/" element={<Home/>}/>

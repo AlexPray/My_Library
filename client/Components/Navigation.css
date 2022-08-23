@@ -1,8 +1,7 @@
 .nav-bar {
-    height: auto;
+    height: 52px;
     width: 100%;
-    border: 1px solid black;
-    background-color: var(--second-color);
+    background-color: var(--main-color);
     display: flex;
     justify-content: center;
 }
@@ -10,14 +9,17 @@
 .nav-list {
     display: flex;
     list-style: none;
-    padding: 0;
-    margin:0;
+    margin: auto;
     width: auto;
 }
 
 .nav-listpoint{
-    margin: 1rem;
+    margin: 32px;
     text-decoration: none;
-    color: var(--main-color);
+    color: var(--second-color);
     font-size: 1.3rem;
+}
+
+.nav-listpoint:hover {
+    color: var(--second-color-5);
 }

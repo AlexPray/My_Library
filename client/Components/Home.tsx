@@ -3,7 +3,7 @@ import React from "react"
 
 const Home = () => {
     return (
-        <p>Welcome to Library App</p>
+        <p className="text">Welcome to Library App</p>
     )
 }
 

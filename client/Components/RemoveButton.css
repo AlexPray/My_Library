@@ -1,4 +1,4 @@
-.add-button {
+.remove-button {
     height: 35px;
     width: 150px;
     color: var(--main-color);
@@ -7,7 +7,7 @@
     align-self: center;
 }
 
-.add-button:hover {
+.remove-button:hover {
     opacity: 0.8;
     cursor: pointer;
 }

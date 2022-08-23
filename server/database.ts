@@ -44,7 +44,7 @@ class DbService {
     try {
       let response = await new Promise((resolve, reject) => {
         const query =
-          "INSERT INTO `it_firma`.`my_library` (`Title`, `Authors`, `Thumbnail`, `GoogleId`) VALUES (?, ?, ?, ?, ?)";
+          "INSERT INTO `it_firma`.`my_library` (`Title`, `Authors`, `Thumbnail`, `GoogleId`) VALUES (?, ?, ?, ?)";
         connection.query(
           query,
           [book.title, book.authors, book.thumbnail, book.googleId],
@@ -56,7 +56,25 @@ class DbService {
       });
     } catch (err) {
       console.log(err);
-      
+    }
+  }
+
+  async deleteBook(book: Book) {
+    try {
+      let response = await new Promise((resolve, reject) => {
+        const query =
+          "DELETE FROM `it_firma`.`my_library` WHERE `GoogleId` = ?"
+        connection.query(
+          query,
+          [book.googleId],
+          (err, results) => {
+            if (err) reject(new Error(err.message));
+            resolve(results);
+          }
+        );
+      });
+    } catch (err) {
+      console.log(err);
     }
   }
 }
