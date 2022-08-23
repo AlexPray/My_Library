@@ -1,20 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
 :root {
-    font-family: 'Lora', serif;
-    --main-color: #D5B15F;
-    --main-color-5: #d5b25fe7;
-    --second-color: #292929;
-    --second-color-5: #292929d3;
-    --third-color: #F7EFDF;
+  --main-color: #d5b15f;
+  --main-color-5: #d5b25fe7;
+  --second-color: #292929;
+  --second-color-5: #292929d3;
+  --third-color: #f7efdf;
 }
-
-
 
 body {
   background-color: var(--third-color);
   margin: 0;
-  width: 100%;
-  overflow-x: hidden;
+  font-family: 'Lora', serif;
+}
+
+* {
   box-sizing: border-box;
 }

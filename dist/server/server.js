@@ -19,7 +19,29 @@ app.get("/getBooks", function (req, res) {
 });
 // Create new book in database by addButton
 app.post("/addBook", function (req, res) {
-    res.json({ response: 'Success' }).status(200).end();
+    var db = database_1.default.getDbServiceInstance();
+    db.addNewBook(req.body)
+        .then(function (response) {
+        res.json({ status: "success" }).status(200);
+    })
+        .catch(function (err) {
+        var customErrorMsg = '';
+        switch (err.code) {
+            case 'ER_DUP_ENTRY':
+                customErrorMsg = 'Book already in library';
+                break;
+            case 'ER_WRONG_VALUE_COUNT_ON_ROW':
+                customErrorMsg = 'Something went wrong';
+                break;
+        }
+        res.json({ status: "error", error: customErrorMsg, errrormsg: err.message }).status(200);
+    });
+});
+// Remove book from database
+app.delete("/removeBook", function (req, res) {
+    var db = database_1.default.getDbServiceInstance();
+    db.deleteBook(req.body);
+    res.json({ response: "Success deleting" }).status(200);
 });
 var PORT = 3030;
 app.listen(PORT, function () {

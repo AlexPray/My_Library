@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./MyLibrary.css";
 import Card from "./Card";
 import Book from "../API/Book";
+import Image from './Image'
 import RemoveButton from "./RemoveButton";
 import Notification from "./Notification";
 
@@ -42,10 +43,16 @@ const MyLibrary = () => {
         <p>This is my beautiful working Library</p>
         <div className="library">
           {library.map((book: Book) => (
-            <div key={Math.random()} className="card">
-              <Card book={book} />
-              <RemoveButton handleChange={showNotification} book={book} />
+            <Card key={book.googleId}>
+            <div className="img-container">
+              <Image book={book} />
             </div>
+            <div className="text-container">
+              <p className="title">{book.title}</p>
+              <p className="authors">{book.authors}</p>
+            </div>
+            <RemoveButton onChange={fetchBooksHandler} book={book}/>
+          </Card>
           ))}
         </div>
         {notification === true && <Notification className="notification-appear" />}

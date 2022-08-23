@@ -8,22 +8,22 @@
   left: 5px;
   display: flex;
   border-radius: 15px;
-  background-color: var(--second-color-5);
+  background-color: var(--main-color);
   padding: 17px;
   justify-content: space-around;
   align-items: center;
-  transition: opacity 2s ease-in-out;
-  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 10;
 }
 
 .notification {
-  color: var(--main-color);
+  color: var(--second-color);
   padding: 2px;
   font-family: "Times New Roman", Times, serif;
 }
 
 .undo-button {
-  color: var(--main-color);
+  color: var(--second-color);
   outline: none;
   background: transparent;
   border: none;
@@ -31,6 +31,14 @@
   font-family: "Times New Roman", Times, serif;
 }
 
-.notification-appear {
+.error {
   opacity: 1;
+}
+
+.success {
+  opacity: 1;
+}
+
+.invincible {
+  opacity: 0;
 }

@@ -5,14 +5,14 @@ import Book from "../API/Book";
 
 const RemoveButton = ({
   book,
-  handleChange,
+  onChange,
 }: {
   book: Book;
-  handleChange: () => void;
+  onChange: () => void;
 }) => {
   const RemoveButtonHandler = async () => {
     await axios.delete(`http://localhost:3030/removeBook`, { data: book });
-    handleChange();
+    onChange();
   };
   return (
     <button className="remove-button" onClick={RemoveButtonHandler}>

@@ -89,14 +89,31 @@ var DbService = /** @class */ (function () {
     };
     DbService.prototype.addNewBook = function (book) {
         return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, new Promise(function (resolve, reject) {
+                            var query = "INSERT INTO `it_firma`.`my_library` (`Title`, `Authors`, `Thumbnail`, `GoogleId`) VALUES (?, ?, ?, ?)";
+                            connection.query(query, [book.title, book.authors, book.thumbnail, book.googleId], function (err, results) {
+                                if (err)
+                                    reject(err);
+                                resolve(results);
+                            });
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    DbService.prototype.deleteBook = function (book) {
+        return __awaiter(this, void 0, void 0, function () {
             var response, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, new Promise(function (resolve, reject) {
-                                var query = "INSERT INTO `it_firma`.`my_library` (`Title`, `Authors`, `Thumbnail`, `GoogleId`) VALUES (?, ?, ?, ?, ?)";
-                                connection.query(query, [book.title, book.authors, book.thumbnail, book.googleId], function (err, results) {
+                                var query = "DELETE FROM `it_firma`.`my_library` WHERE `GoogleId` = ?";
+                                connection.query(query, [book.googleId], function (err, results) {
                                     if (err)
                                         reject(new Error(err.message));
                                     resolve(results);

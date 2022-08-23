@@ -41,22 +41,18 @@ class DbService {
   }
 
   async addNewBook(book: Book) {
-    try {
-      let response = await new Promise((resolve, reject) => {
-        const query =
-          "INSERT INTO `it_firma`.`my_library` (`Title`, `Authors`, `Thumbnail`, `GoogleId`) VALUES (?, ?, ?, ?)";
-        connection.query(
-          query,
-          [book.title, book.authors, book.thumbnail, book.googleId],
-          (err, results) => {
-            if (err) reject(new Error(err.message));
-            resolve(results);
-          }
-        );
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    return await new Promise((resolve, reject) => {
+      const query =
+        "INSERT INTO `it_firma`.`my_library` (`Title`, `Authors`, `Thumbnail`, `GoogleId`) VALUES (?, ?, ?, ?)";
+      connection.query(
+        query,
+        [book.title, book.authors, book.thumbnail, book.googleId],
+        (err, results) => {
+          if (err) reject(err);
+          resolve(results);
+        }
+      );
+    });
   }
 
   async deleteBook(book: Book) {

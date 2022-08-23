@@ -1,18 +1,37 @@
-import axios from "axios";
-import React from "react";
-import Book from "../API/Book";
-import "./AddButton.css";
+import axios from 'axios';
+import React, { useState, Fragment } from 'react';
+import Book from '../API/Book';
+import Notification from './Notification';
+import './AddButton.css';
 
 const AddButton = (props: { book: Book }) => {
   const { book } = props;
 
+  const [notification, setNotification] = useState('invincible');
+  const [message, setMessage] = useState('Added book to library');
+
   const AddButtonHandler = async () => {
-    await axios.post("http://localhost:3030/addBook", book);
-  }
+    const res = await axios.post('http://localhost:3030/addBook', book);
+    const data = res.data;
+    if (data) {
+      if (data.error) {
+        setMessage(data.error);
+      }
+      setNotification(data.status);
+      setTimeout(() => {
+        setNotification('invincible');
+      }, 3500);
+    }
+  };
+
   return (
-    <button className="add-button" onClick={AddButtonHandler}>
-      Add Book to Library
-    </button>
+    <Fragment>
+      <button className="add-button" onClick={AddButtonHandler}>
+        {<span className="plus">+</span>}{' '}
+        {<span className="button-text">Add to library</span>}
+      </button>
+      <Notification message={message} className={notification} />
+    </Fragment>
   );
 };
 

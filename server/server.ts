@@ -1,6 +1,8 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response, NextFunction, response } from "express";
 import DbService from "./database";
 import cors from "cors";
+import { log } from "console";
+import { resolve } from "path";
 const app = express();
 
 app.use(
@@ -22,14 +24,28 @@ app.get("/getBooks", (req, res) => {
 app.post("/addBook", (req, res) => {
   const db = DbService.getDbServiceInstance();
   db.addNewBook(req.body)
-  res.json({ response: "Success" }).status(200).end();
+    .then(response => {
+      res.json({ status: "success" }).status(200);
+    })
+    .catch(err => {
+      let customErrorMsg = '';
+      switch (err.code) {
+        case 'ER_DUP_ENTRY':
+          customErrorMsg = 'Book already in library';
+          break;
+        case 'ER_WRONG_VALUE_COUNT_ON_ROW':
+          customErrorMsg = 'Something went wrong';
+          break;
+      }
+      res.json({ status: "error", error: customErrorMsg, errrormsg: err.message }).status(200);
+    });
 });
 
 // Remove book from database
 app.delete("/removeBook", (req, res) => {
   const db = DbService.getDbServiceInstance();
   db.deleteBook(req.body)
-  res.json({ response: "Success deleting" }).status(200).end();
+  res.json({ response: "Success deleting" }).status(200);
 });
 
 const PORT = 3030;
