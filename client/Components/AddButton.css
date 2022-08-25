@@ -16,7 +16,7 @@
 }
 
 .add-button:hover {
-    background-color: var(--main-color-5);
+    background-color: var(--main-color-dark);
     cursor: pointer;
 }
 
@@ -28,7 +28,7 @@
     left: 15px;
 }
 
-.button-text {
+.add-button-text {
     margin-bottom: 20px;
     display: block;
     left: 45px;

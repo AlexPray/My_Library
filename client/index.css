@@ -2,9 +2,11 @@
 
 :root {
   --main-color: #d5b15f;
-  --main-color-5: #d5b25fe7;
+  --main-color-dark: #bd9e55;
+  --main-color-5: #d5b25fd1;
   --second-color: #292929;
-  --second-color-5: #292929d3;
+  --second-color-light: #747474;
+  --second-color-5: #2929299e;
   --third-color: #f7efdf;
 }
 

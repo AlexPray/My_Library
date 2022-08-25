@@ -4,7 +4,7 @@
   "description": "",
   "main": "./dist/server/server.js",
   "scripts": {
-    "compile": "cp ./public/* ./dist/ && tsc && npm run serve",
+    "compile": "cp -r ./public/* ./dist/ && tsc && npm run serve",
     "serve": "node dist/server/server.js",
     "comp": "npx webpack serve",
     "start": "nodemon -e ts -x \"npm run compile || exit 1\"",

@@ -1,13 +1,12 @@
-
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  entry: "./client/index.tsx",
+  entry: './client/index.tsx',
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: ["ts-loader"],
+        use: ['ts-loader'],
         exclude: /node_modules/,
       },
       {
@@ -16,24 +15,17 @@ module.exports = {
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'images/[hash]-[name].[ext]',
-            },
-          },
-        ],
+        type: 'asset/resource',
       },
     ],
   },
-  mode: "development",
+  mode: 'development',
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".css"],
+    extensions: ['.tsx', '.ts', '.js', '.css'],
   },
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'dist')
+      directory: path.resolve(__dirname, 'dist'),
     },
     port: 8000,
     open: true,
@@ -42,8 +34,9 @@ module.exports = {
     historyApiFallback: true,
   },
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
+    assetModuleFilename: '[name][ext]',
   },
 };

@@ -3,13 +3,25 @@ import Book from "../client/API/Book";
 
 let instance: null | DbService = null;
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Sonnenberg01?",
-  database: "it_firma",
-  port: 3306,
-});
+let connection: mysql.Connection;
+
+if (process.env.NODE_ENV === "production") {
+  connection = mysql.createConnection({
+    host: "eporqep6b4b8ql12.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
+    user: "ps7evbwwlw0lc09s",
+    password: "uvuz4p58gpwmd6k6?",
+    database: "wrhpbg3uiucioepe",
+    port: 3306,
+  });
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "Sonnenberg01?",
+    database: "it_firma",
+    port: 3306,
+  });
+}
 
 connection.connect((err) => {
   if (err) {
@@ -57,14 +69,14 @@ class DbService {
 
   async deleteBook(book: Book) {
     try {
-      let response = await new Promise((resolve, reject) => {
+      return await new Promise((resolve, reject) => {
         const query =
           "DELETE FROM `it_firma`.`my_library` WHERE `GoogleId` = ?"
         connection.query(
           query,
           [book.googleId],
           (err, results) => {
-            if (err) reject(new Error(err.message));
+            if (err) reject(err);
             resolve(results);
           }
         );

@@ -1,8 +1,6 @@
 import express, { Request, Response, NextFunction, response } from "express";
 import DbService from "./database";
 import cors from "cors";
-import { log } from "console";
-import { resolve } from "path";
 const app = express();
 
 app.use(
@@ -45,7 +43,16 @@ app.post("/addBook", (req, res) => {
 app.delete("/removeBook", (req, res) => {
   const db = DbService.getDbServiceInstance();
   db.deleteBook(req.body)
-  res.json({ response: "Success deleting" }).status(200);
+  .then(response => {
+    res.json({ status: "success" }).status(200);
+  }).catch(err => {
+    let customErrorMsg = '';
+    if (err){
+    customErrorMsg = err.message;
+    console.log(err);
+    }
+    res.json({ status: "error", error: customErrorMsg, errrormsg: err.message }).status(200);
+  });
 });
 
 const PORT = 3030;

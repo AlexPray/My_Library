@@ -1,23 +1,30 @@
-import React from "react";
-import "./RemoveButton.css";
-import axios from "axios";
-import Book from "../API/Book";
+import React, {Fragment, useState} from 'react';
+import Notification from './Notification';
+import './RemoveButton.css';
+import axios from 'axios';
+import Book from '../API/Book';
 
 const RemoveButton = ({
   book,
   onChange,
 }: {
   book: Book;
-  onChange: () => void;
+  onChange: (res: any) => void;
 }) => {
+
   const RemoveButtonHandler = async () => {
-    await axios.delete(`http://localhost:3030/removeBook`, { data: book });
-    onChange();
+    const res = await axios.delete(`http://localhost:3030/removeBook`, { data: book });
+    onChange(res);
   };
+  
+
   return (
-    <button className="remove-button" onClick={RemoveButtonHandler}>
-      Remove book
-    </button>
+    <Fragment>
+      <button className="remove-button" onClick={RemoveButtonHandler}>
+        {<span className="minus">x</span>}{' '}
+        {<span className="remove-button-text">Remove book</span>}
+      </button>
+    </Fragment>
   );
 };
 

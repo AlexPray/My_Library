@@ -17,6 +17,11 @@ const Navigation = () => {
               My Library
             </Link>
           </li>
+          <li>
+            <Link to="/documentation" className="nav-listpoint">
+              Documentation
+            </Link>
+          </li>
         </ul>
       </nav>
       <Outlet />

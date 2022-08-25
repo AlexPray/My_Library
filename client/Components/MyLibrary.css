@@ -1,13 +1,11 @@
 .library {
-    display: flex;
-    width: inherit;
-    height: auto;
-    flex: 100%;
-    flex-wrap: wrap;
-    justify-content:center
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 20px 60px;
 }
 
-.library * {
-    flex-shrink: 1;
-    flex-grow: 1;
+.library::after {
+  content: '';
+  flex: auto;
 }

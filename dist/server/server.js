@@ -40,8 +40,17 @@ app.post("/addBook", function (req, res) {
 // Remove book from database
 app.delete("/removeBook", function (req, res) {
     var db = database_1.default.getDbServiceInstance();
-    db.deleteBook(req.body);
-    res.json({ response: "Success deleting" }).status(200);
+    db.deleteBook(req.body)
+        .then(function (response) {
+        res.json({ status: "success" }).status(200);
+    }).catch(function (err) {
+        var customErrorMsg = '';
+        if (err) {
+            customErrorMsg = err.message;
+            console.log(err);
+        }
+        res.json({ status: "error", error: customErrorMsg, errrormsg: err.message }).status(200);
+    });
 });
 var PORT = 3030;
 app.listen(PORT, function () {

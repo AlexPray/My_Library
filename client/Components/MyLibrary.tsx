@@ -1,15 +1,17 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import "./MyLibrary.css";
-import Card from "./Card";
-import Book from "../API/Book";
-import Image from './Image'
-import RemoveButton from "./RemoveButton";
-import Notification from "./Notification";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import './MyLibrary.css';
+import Card from './Card';
+import Book from '../API/Book';
+import Image from './Image';
+import RemoveButton from './RemoveButton';
+import AddButton from './AddButton';
+import Notification from './Notification';
 
 const MyLibrary = () => {
   const [library, setlibrary] = useState<Book[]>([]);
-  const [notification, setnotification] = useState(false);
+  const [notification, setNotification] = useState('invincible');
+  const [message, setMessage] = useState('Removed book from library');
 
   useEffect(() => {
     fetchBooksHandler();
@@ -17,7 +19,7 @@ const MyLibrary = () => {
 
   const fetchBooksHandler = () => {
     axios
-      .get("http://localhost:3030/getBooks")
+      .get('http://localhost:3030/getBooks')
       .then((response) => {
         return response.data;
       })
@@ -26,41 +28,40 @@ const MyLibrary = () => {
       });
   };
 
-  const showNotification = () => {
+  const notificationHandler = (res: any) => {
     fetchBooksHandler();
-    setnotification(true);
-  };
-
-  if (notification === true) {
-    const vanishNotification = setTimeout(() => {
-      setnotification(false);
-    }, 5000);
+    if (res.data) {
+      const data = res.data;
+      if (data.error) {
+        setMessage(data.error);
+      }
+      setNotification(data.status);
+      setTimeout(() => {
+        setNotification('invincible');
+      }, 150);
+    }
   }
-
-  if (library.length > 0) {
-    return (
-      <div>
-        <p>This is my beautiful working Library</p>
+    if (library.length > 0) {
+      return (
         <div className="library">
           {library.map((book: Book) => (
-            <Card key={book.googleId}>
-            <div className="img-container">
-              <Image book={book} />
-            </div>
-            <div className="text-container">
-              <p className="title">{book.title}</p>
-              <p className="authors">{book.authors}</p>
-            </div>
-            <RemoveButton onChange={fetchBooksHandler} book={book}/>
-          </Card>
+            <Card key={Math.random()}>
+              <div className="img-container">
+                <Image book={book} />
+                <RemoveButton onChange={notificationHandler} book={book} />
+              </div>
+              <div className="text-container">
+                <p className="title">{book.title}</p>
+                <p className="authors">{book.authors}</p>
+              </div>
+            </Card>
           ))}
+          <Notification message={message} className={notification} />
         </div>
-        {notification === true && <Notification className="notification-appear" />}
-      </div>
-    );
-  } else {
-    return <p>Keine Bücher gefunden</p>;
-  }
+      );
+    } else {
+      return <p>Keine Bücher gefunden</p>;
+    }
 };
 
 export default MyLibrary;

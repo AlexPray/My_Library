@@ -1,11 +1,8 @@
-import React from "react";
-import Container from "./Components/Container";
+import React from 'react';
+import Container from './Components/Container';
 
 const App: React.FC = () => {
-  return (
-    <Container/>
-  );
+  return <Container />;
 };
-
 
 export default App;

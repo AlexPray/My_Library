@@ -41,13 +41,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var mysql2_1 = __importDefault(require("mysql2"));
 var instance = null;
-var connection = mysql2_1.default.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Sonnenberg01?",
-    database: "it_firma",
-    port: 3306,
-});
+var connection;
+if (process.env.NODE_ENV === "production") {
+    connection = mysql2_1.default.createConnection({
+        host: "eporqep6b4b8ql12.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
+        user: "ps7evbwwlw0lc09s",
+        password: "uvuz4p58gpwmd6k6?",
+        database: "wrhpbg3uiucioepe",
+        port: 3306,
+    });
+}
+else {
+    connection = mysql2_1.default.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "Sonnenberg01?",
+        database: "it_firma",
+        port: 3306,
+    });
+}
 connection.connect(function (err) {
     if (err) {
         console.log(err.message);
@@ -106,7 +118,7 @@ var DbService = /** @class */ (function () {
     };
     DbService.prototype.deleteBook = function (book) {
         return __awaiter(this, void 0, void 0, function () {
-            var response, err_2;
+            var err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -115,13 +127,11 @@ var DbService = /** @class */ (function () {
                                 var query = "DELETE FROM `it_firma`.`my_library` WHERE `GoogleId` = ?";
                                 connection.query(query, [book.googleId], function (err, results) {
                                     if (err)
-                                        reject(new Error(err.message));
+                                        reject(err);
                                     resolve(results);
                                 });
                             })];
-                    case 1:
-                        response = _a.sent();
-                        return [3 /*break*/, 3];
+                    case 1: return [2 /*return*/, _a.sent()];
                     case 2:
                         err_2 = _a.sent();
                         console.log(err_2);

@@ -30,7 +30,7 @@
 }
 
 .search-button:hover {
-  background-color: var(--main-color-5);
+  background-color: var(--main-color-dark);
   cursor: pointer;
 }
 

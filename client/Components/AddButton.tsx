@@ -20,7 +20,7 @@ const AddButton = (props: { book: Book }) => {
       setNotification(data.status);
       setTimeout(() => {
         setNotification('invincible');
-      }, 3500);
+      }, 150);
     }
   };
 
@@ -28,7 +28,7 @@ const AddButton = (props: { book: Book }) => {
     <Fragment>
       <button className="add-button" onClick={AddButtonHandler}>
         {<span className="plus">+</span>}{' '}
-        {<span className="button-text">Add to library</span>}
+        {<span className="add-button-text">Add to library</span>}
       </button>
       <Notification message={message} className={notification} />
     </Fragment>

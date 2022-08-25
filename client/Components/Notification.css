@@ -12,14 +12,13 @@
   padding: 17px;
   justify-content: space-around;
   align-items: center;
-  transition: opacity 1s ease-in-out;
   z-index: 10;
 }
 
 .notification {
   color: var(--second-color);
   padding: 2px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .undo-button {
@@ -28,7 +27,7 @@
   background: transparent;
   border: none;
   padding: 2px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .error {
@@ -41,4 +40,5 @@
 
 .invincible {
   opacity: 0;
+  transition: opacity 2s ease-in-out;
 }

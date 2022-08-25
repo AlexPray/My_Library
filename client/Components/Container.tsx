@@ -7,6 +7,7 @@ import Book from "../API/Book";
 import { Route, Routes } from "react-router-dom";
 import MyLibrary from "./MyLibrary";
 import Home from "./Home";
+import Documentation from "./Documentation";
 
 const Container = () => {
   const [obtainedData, setobtainedData] = useState<Book[] | undefined>(
@@ -28,6 +29,7 @@ const Container = () => {
         <Route path="search" element={<SearchResults searchResults={obtainedData} />}/>
         <Route path="/" element={<Home/>}/>
         <Route path="mylibrary" element={<MyLibrary/>}/>
+        <Route path="documentation" element={<Documentation/>}/>
       </Routes>
     </div>
   );
